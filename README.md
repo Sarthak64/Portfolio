@@ -28,8 +28,8 @@ For the Python programming language and its NumPy extension, Matplotlib is a cha
 
 ### `Load complete Dataset`
 ```
-df = pd.read_csv("youtube_dataset.csv")
-df.head()
+data = pd.read_csv("youtube_dataset.csv")
+data.head()
 ```
 
 #### pandas.read_csv
@@ -38,9 +38,9 @@ DataFrame may be read from a comma-separated (csv) file. In addition, the file c
 ### `Function to Calculate Channel Type Distribution`
 ```
 def ChannelTypeDist(df, row_select):
-    filter_df= df.iloc[:row_select, [2,9]]
-    dist_df = filter_df.groupby(['channeltype'],sort = True).count() 
-    return dist_df
+    filter_data= data.iloc[:row_select, [2,9]]
+    dist_data = filter_data.groupby(['channeltype'],sort = True).count() 
+    return dist_data
 ```
 
 the function above seledts rows 2 to 8 from dataset and group them on the paramter= "channeltype"
@@ -53,8 +53,8 @@ You may either use a mapper or a series of columns to group DataFrames. Splittin
 
 ### `Load to CSV`
 ```
-export_df = df.iloc[:1000,:] #filter top 1000 rows
-export_df.to_csv("YoutubeTop1000.csv") # Load into CSV
+export_data = data.iloc[:1000,:] #filter top 1000 rows
+export_data.to_csv("YoutubeTop1000.csv") # Load into CSV
 print('Data Loaded Successfully into CSV')
 ```
 The iloc[:1000,:] function helps in selecting the to 1000 rows and alll the columnns from the dataset
@@ -65,7 +65,7 @@ Write object to a comma-separated (csv) file. [More Info](https://pandas.pydata.
 ### `Load to Database`
 ```
 engine = create_engine("mysql+mysqldb://root:password@localhost/assignment4") #Create Connection
-export_df.to_sql('YoutubeTop1000', con=engine, if_exists='append') # Load Data
+export_data.to_sql('YoutubeTop1000', con=engine, if_exists='append') # Load Data
 print('Data Loaded Successfully into MySql')
 ```
 #### pandas.DataFrame.to_sql
